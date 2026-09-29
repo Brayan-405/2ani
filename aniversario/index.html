@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dos años</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body><main class="gate"><div class="card">
+<div class="two" aria-hidden="true">2</div>
+<h1>Dos años</h1><p>Esta página es solo para ti.</p>
+<form id="f">
+<label>Usuario<input id="u" autocomplete="username" required></label>
+<label>Contraseña<input id="p" type="password" autocomplete="current-password" required></label>
+<button class="btn">Entrar</button><p class="err" id="err" role="alert"></p>
+</form></div></main>
+<script src="app.js"></script>
+<script>
+if (sessionStorage.getItem("ok") === "1") location.replace("home.html");
+$("f").onsubmit = e => {
+  e.preventDefault();
+  if (check("main", $("u").value, $("p").value)) { sessionStorage.setItem("ok", "1"); location.href = "home.html"; }
+  else $("err").textContent = "Usuario o contraseña incorrectos. Inténtalo otra vez.";
+};
+</script></body></html>

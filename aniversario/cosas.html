@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nuestras cosas</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<a class="back" href="home.html">← Volver</a>
+<div id="lock" class="gate" style="min-height:70vh"><div class="card">
+  <div class="two" style="font-size:4rem">🔒</div>
+  <h2 style="font-size:2rem">Nuestras cosas</h2><p>Esta parte es solo nuestra.</p>
+  <form id="f">
+    <label>Usuario<input id="u" autocomplete="off" required></label>
+    <label>Contraseña<input id="p" type="password" autocomplete="off" required></label>
+    <button class="btn">Abrir</button><p class="err" id="err" role="alert"></p>
+  </form>
+</div></div>
+<div id="open" hidden>
+  <h1>Nuestras cosas</h1>
+  <p class="lead">Me encanta que seamos solo nosotros</p>
+  <div class="gal" id="gal"></div>
+</div></main>
+<script src="app.js"></script>
+<script>
+guard();
+/* Cambia cada leyenda del marco */
+const L = ["","","","","",""];
+function show(){ $("lock").hidden = true; $("open").hidden = false; frames($("gal"), L, "cosas"); }
+if (sessionStorage.getItem("ok2") === "1") show();
+$("f").onsubmit = e => {
+  e.preventDefault();
+  if (check("cosas", $("u").value, $("p").value)) { sessionStorage.setItem("ok2", "1"); show(); }
+  else $("err").textContent = "Esos datos no son. Intenta de nuevo.";
+};
+</script></body></html>

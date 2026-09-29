@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Línea del tiempo</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<a class="back" href="home.html">← Volver</a>
+<h1>Línea del tiempo</h1>
+<p class="lead">Los momentos que nos trajeron hasta hoy.</p>
+<div class="line" id="tl"></div></main>
+<script src="app.js"></script>
+<script>
+guard();
+/* Edita fecha, título y texto de cada momento. Fotos: images/tiempo-01.jpg, tiempo-02.jpg... */
+const M = [
+  ["27 de septiembre de 2024","Empezamos","El día de mi pedida no fue lo que esperabas pero me rifeee me rifeee jajaja."],
+  ["","Nuestra primera cita","Aquí conocí la impuntualidad de mi mujer jaja pero también conocí y estuve con quien sería el amor de mi vida."],
+  ["","Nuestro primer viaje","Aquí empezo casi la historia con tu familiaaa jsjs me fui de colado al partidoo."],
+  ["","Un momento que nos marcó","Aquí nos dimos cuenta que nos ibamos a necesitar uno al otro."],
+  ["","Una tontería que amamos","Comeeerrr, porque mis liendres siguen creciendo por tiii jaja"],
+  ["27 de septiembre de 2026","Dos años","Y seguimos escribiendo la historia."]
+];
+$("tl").innerHTML = M.map((m, i) => `<article class="moment"><div><time>${m[0]}</time><h3>${m[1]}</h3><p>${m[2]}</p></div>${ph("tiempo", i, m[1])}</article>`).join("");
+</script></body></html>

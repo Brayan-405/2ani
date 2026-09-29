@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Viajes y momentos especiales</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<a class="back" href="home.html">← Volver</a>
+<h1>Viajes y momentos especiales</h1>
+<p class="lead">Toca cualquier foto para verla en grande</p>
+<div class="wall" id="wall"></div></main>
+<script src="app.js"></script>
+<script>
+guard();
+/* Cambia cada pie de foto por el lugar o momento */
+pols($("wall"), [
+  "Nuestro primer viaje como pareja y el más especial","esa sonrisa que tienes, me ha enamorado demasiado","me abriste las puertas al trabajo con tu familia","aquí fue algo muy especial porque tuve a toda mi familia junta","en cada cumpleaños quiero que estés tú",
+  "Eres mi obsequio más especial","Mis locuras van con tus locuras","Esas experiencias son muy especiales y no quiero que acaben","Tú me haces una persona mejor y se que algún día te lo voy a recompensar","A todos lados siempre contigo",
+  "ayyy salí cortado JAJA pero me encanta ser parte detu vida","Gracias por hacerme parte de tu vida","me encanta ser parte de tii","recorrer lugares enredados y encontrar salida, nos sale muy bien","Eres la princesa de mi castillo"
+], "viaje");
+</script></body></html>

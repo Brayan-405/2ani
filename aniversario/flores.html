@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flores</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<a class="back" href="home.html">← Volver</a>
+<svg class="bouquet" id="ramo" viewBox="0 0 700 760" role="img" aria-label="Un ramo de rosas en forma de corazón"></svg>
+<div class="msg">
+  <p>Dos años y todavía busco palabras que le queden a lo que siento. Estas flores no se marchitan, así que quédatelas: cada rosa es uno de los días que ya vivimos juntos, y todavía me faltan muchísimos por regalarte; se que no son las que quieres pero creeme que algún día te daré todas las flores del mundo.</p>
+  <p style="margin-top:1rem">Gracias por quedarte, por reírte conmigo y por cuidarme. Te elijo hoy y todos los días que vengan.</p>
+  <p class="sign">Feliz segundo aniversario.</p>
+</div></main>
+<script src="app.js"></script>
+<script>
+guard();
+const S = 250, CX = 350, CY = 372, step = .16;
+const cols = ["#D93A76","#E8578C","#B92A63","#F06FA0","#C92F6B"], greens = ["#3E8E5A","#2F7A4B"];
+let seed = 7; const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+const inside = (x, y) => Math.pow(x*x + y*y - 1, 3) - x*x*y*y*y <= 0;
+const P = [];
+let row = 0;
+for (let y = 1.3; y >= -1.02; y -= step, row++)
+  for (let x = -1.2 + (row % 2) * step / 2; x <= 1.2; x += step)
+    if (inside(x, y)) P.push({x, y, edge: !(inside(x+step,y) && inside(x-step,y) && inside(x,y+step) && inside(x,y-step))});
+let out = `<g stroke="#2F7A4B" stroke-width="9" stroke-linecap="round" fill="none"><path d="M330 590L350 745"/><path d="M370 590L350 745"/><path d="M350 600V745"/></g>`;
+P.filter(p => p.edge).forEach(p => {
+  const sx = CX + p.x*S, sy = CY - p.y*S, a = Math.atan2(sy - 340, sx - CX), lx = sx + Math.cos(a)*26, ly = sy + Math.sin(a)*26;
+  out += `<ellipse cx="${lx}" cy="${ly}" rx="24" ry="9" fill="${greens[Math.floor(rnd()*2)]}" transform="rotate(${a*180/Math.PI} ${lx} ${ly})"/>`;
+});
+P.forEach((p, i) => {
+  const sx = CX + p.x*S + (rnd()-.5)*8, sy = CY - p.y*S + (rnd()-.5)*8, k = (27 + rnd()*4) / 10, c = cols[Math.floor(rnd()*cols.length)];
+  out += `<g transform="translate(${sx.toFixed(1)} ${sy.toFixed(1)}) rotate(${Math.floor(rnd()*360)})"><g class="bl" style="animation-delay:${i*14}ms"><g transform="scale(${k.toFixed(2)})">
+  <circle r="10" fill="${c}"/><circle r="10" fill="none" stroke="#2B1B3D" stroke-opacity=".18" stroke-width=".8"/>
+  <path d="M0-6C7-7 9 1 3 6C-4 10-10 2-7-4C-4-9 3-8 4-3C5 1 0 3-1 0" fill="none" stroke="#2B1B3D" stroke-opacity=".45" stroke-width="1.1" stroke-linecap="round"/>
+  <circle cx="-3" cy="-4" r="2" fill="#fff" opacity=".22"/></g></g></g>`;
+});
+out += `<g fill="#F2B84B"><ellipse cx="322" cy="676" rx="30" ry="13" transform="rotate(-25 322 676)"/><ellipse cx="378" cy="676" rx="30" ry="13" transform="rotate(25 378 676)"/><circle cx="350" cy="682" r="10" fill="#D8901F"/></g>`;
+$("ramo").innerHTML = out;
+</script></body></html>
